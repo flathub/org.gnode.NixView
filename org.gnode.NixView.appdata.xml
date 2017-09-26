@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2017 Christian J. Kellner <gicmo@gnome.org> -->
 <application>
-  <id type="desktop">NixView.desktop</id>
+  <id type="desktop">org.gnode.NixView.desktop</id>
   <name>NixView</name>
   <summary>Viewer for nix datafiles</summary>
   <metadata_license>CC0-1.0</metadata_license>
