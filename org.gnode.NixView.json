@@ -1,8 +1,8 @@
 {
     "app-id": "org.gnode.NixView",
-    "runtime": "org.freedesktop.Platform",
-    "runtime-version": "1.6",
-    "sdk": "org.freedesktop.Sdk",
+    "runtime": "org.kde.Platform",
+    "runtime-version": "5.9",
+    "sdk": "org.kde.Sdk",
 
     "finish-args": [
         "--filesystem=home:ro",
@@ -78,7 +78,6 @@
                 "/lib/pkgconfig"
             ]
         },
-        "shared-modules/qt5/qt5-qtbase.json",
         {
             "name": "NixView",
             "buildsystem": "cmake",
