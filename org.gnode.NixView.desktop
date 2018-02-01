@@ -3,5 +3,6 @@ Type=Application
 Name=NixView
 Comment=Viewer for nix datafiles
 Icon=org.gnode.NixView
+Categories=Science;
 Exec=nixview
 Terminal=false
