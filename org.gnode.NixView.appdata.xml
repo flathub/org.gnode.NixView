@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2017 Christian J. Kellner <gicmo@gnome.org> -->
-<application>
-  <id type="desktop">org.gnode.NixView.desktop</id>
-  <name>NixView</name>
-  <summary>Viewer for nix datafiles</summary>
+<component type="desktop-application">
+  <id>org.gnode.NixView</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>BSD-3-Clause</project_license>
+  <name>NixView</name>
+  <summary>Viewer for nix datafiles</summary>
   <description>
     <p>
       A Qt based viewer for nix datafiles. It can display the data,
@@ -13,14 +13,27 @@
       built in too.
     </p>
   </description>
-  <url type="homepage">http://bendalab.github.io/NixView/</url>
+  <url type="homepage">https://bendalab.github.io/NixView/</url>
+  <url type="bugtracker">https://github.com/bendalab/NixView/issues</url>
+  <url type="vcs-browser">https://bendalab.github.io/NixView/</url>
   <screenshots>
-    <screenshot type="default">http://bendalab.github.io/NixView/images/screenshot.png</screenshot>
+    <screenshot type="default">
+        <image>https://bendalab.github.io/NixView/images/screenshot.png</image>
+    </screenshot>
   </screenshots>
   <content_rating type="oars-1.1" />
-  <updatecontact>gicmo@gnome.org</updatecontact>
-  <url type="bugtracker">https://github.com/bendalab/NixView/issues</url>
+  <developer id="io.github.bendalab">
+      <name>bendalab</name>
+  </developer>
+  <launchable type="desktop-id">org.gnode.NixView.desktop</launchable>
+  <update_contact>gicmo@gnome.org</update_contact>
+  <provides>
+    <id>org.gnode.NixView.desktop</id>
+  </provides>
+  <replaces>
+    <id>org.gnode.NixView.desktop</id>
+  </replaces>
   <releases>
     <release date="2017-09-10" version="0.1"/>
   </releases>
-</application>
+</component>

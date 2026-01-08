@@ -1,17 +1,24 @@
 {
-    "app-id": "org.gnode.NixView",
+    "id": "org.gnode.NixView",
     "runtime": "org.kde.Platform",
-    "runtime-version": "5.14",
+    "runtime-version": "5.15-25.08",
     "sdk": "org.kde.Sdk",
-
+    "command": "nixview",
     "finish-args": [
         "--filesystem=home:ro",
-        "--share=ipc", "--socket=x11",
+        "--share=ipc",
+        "--socket=x11",
         "--socket=pulseaudio",
         "--share=network",
         "--device=dri"
     ],
-
+    "cleanup": [
+        "/include",
+        "/lib/pkgconfig",
+        "/share/hdf5_examples",
+        "*.la",
+        "*.a"
+    ],
     "modules": [
         {
             "name": "boost",
@@ -23,18 +30,18 @@
             ],
             "sources": [
                 {
-                    "sha256": "2684c972994ee57fc5632e03bf044746f6eb45d4920c343937a465fd67a5adba",
                     "type": "archive",
-                    "url": "https://dl.bintray.com/boostorg/release/1.67.0/source/boost_1_67_0.tar.bz2"
+                    "url": "https://downloads.sourceforge.net/project/boost/boost/1.68.0/boost_1_68_0.tar.bz2",
+                    "sha256": "7f6130bc3cf65f56a618888ce9d5ea704fa10b462be126ad053e80e553d6d8b7"
                 }
-            ],
-            "cleanup": [
-                "/include"
             ]
         },
         {
             "name": "hdf5",
             "buildsystem": "autotools",
+            "build-options":{
+                "cflags": "-Wno-error=implicit-function-declaration"
+            },
             "config-opts": [
                 "--disable-silent-rules",
                 "--disable-fortran",
@@ -49,9 +56,7 @@
                 }
             ],
             "cleanup": [
-                "/bin",
-                "/include",
-                "/share/hdf5_examples"
+                "/bin"
             ]
         },
         {
@@ -59,7 +64,8 @@
             "buildsystem": "cmake-ninja",
             "config-opts": [
                 "-DCMAKE_INSTALL_LIBDIR=lib",
-                "-DBUILD_TESTING=No"
+                "-DBUILD_TESTING=No",
+                "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
             ],
             "sources": [
                 {
@@ -67,23 +73,25 @@
                     "url": "https://github.com/G-Node/nix/archive/1.4.3.tar.gz",
                     "sha256": "83c8e1dca01c59f99a23e02cc4682521ebb7335c4de171a2d78e787dc21268f9"
                 }
-            ],
-            "cleanup": [
-                "/bin",
-                "/include",
-                "/lib/pkgconfig"
             ]
         },
         {
             "name": "NixView",
             "buildsystem": "cmake-ninja",
             "config-opts": [
-                "-DCMAKE_INSTALL_LIBDIR=lib"
+                "-DCMAKE_INSTALL_LIBDIR=lib",
+                "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+            ],
+            "post-install": [
+                "install -Dm644 org.gnode.NixView.desktop /app/share/applications/org.gnode.NixView.desktop",
+                "install -Dm644 org.gnode.NixView.png /app/share/icons/hicolor/256x256/apps/org.gnode.NixView.png",
+                "install -Dm644 org.gnode.NixView.appdata.xml /app/share/appdata/org.gnode.NixView.appdata.xml"
             ],
             "sources": [
                 {
                     "type": "git",
                     "url": "https://github.com/bendalab/NixView.git",
+                    "//": "The latest commit from the project",
                     "commit": "62d45409d9ee9bd7612b5f3e7742a35e3202bbda"
                 },
                 {
@@ -98,11 +106,6 @@
                     "type": "file",
                     "path": "org.gnode.NixView.png"
                 }
-            ],
-            "post-install": [
-                "install -Dm644 org.gnode.NixView.desktop /app/share/applications/org.gnode.NixView.desktop",
-                "install -Dm644 org.gnode.NixView.png /app/share/icons/hicolor/256x256/apps/org.gnode.NixView.png",
-                "install -Dm644 org.gnode.NixView.appdata.xml /app/share/appdata/org.gnode.NixView.appdata.xml"
             ]
         }
     ]
